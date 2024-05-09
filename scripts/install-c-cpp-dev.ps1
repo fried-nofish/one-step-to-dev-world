@@ -1,4 +1,4 @@
-Join-Path -Path $PSScriptRoot -ChildPath ../deps/RefreshEnv.ps1 -Resolve | Import-Module
+Join-Path -Path $PSScriptRoot -ChildPath ../deps/RefreshEnv.ps1 -Resolve | Import-Module | Out-Null
 
 scoop install gcc
 scoop install llvm clangd

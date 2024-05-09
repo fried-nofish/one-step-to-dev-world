@@ -1,4 +1,4 @@
-New-Module -Script {
+New-Module -Name Show-Menu -Script {
 
 function Show-Menu {
     <#

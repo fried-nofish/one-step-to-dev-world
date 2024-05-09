@@ -1,4 +1,4 @@
-New-Module -Script {
+New-Module RefreshEnv -Script {
 
 <#PSScriptInfo
 
