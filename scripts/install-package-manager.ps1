@@ -1,7 +1,7 @@
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 
 if (!(Get-Command scoop -ErrorAction SilentlyContinue)) {
-    Invoke-WebRequest -UseBasicParsing get.scoop.sh | Invoke-Expression
+    Invoke-WebRequest -Uri get.scoop.sh -UseBasicParsing | Invoke-Expression
 }
 
 # enable the following block to config proxy, remind to switch to your own proxy address

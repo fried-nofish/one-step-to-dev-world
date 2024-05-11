@@ -7,10 +7,16 @@ scoop install cmake make ninja vcpkg pkg-config
 # set default cmake generator to make
 [Environment]::SetEnvironmentVariable('CMAKE_GENERATOR', 'Ninja', 'User')
 
-# cmake might prefer to use clang, but llvm-clang installed via scoop includes only the
-# bare compiler, explicitly specifying gcc to avoid possible link errors
-[Environment]::SetEnvironmentVariable('CC', (Get-Command gcc).Source, 'User')
-[Environment]::SetEnvironmentVariable('CXX', (Get-Command g++).Source, 'User')
+# cmake might prefer to use clang, but default triple of llvm-clang is x86_64-pc-windows-msvc
+# which is not installed yet, install the basic vs tools to make it runnable
+# NOTE: cmake is already installed by scoop, do not install it again
+Invoke-WebRequest -Uri https://aka.ms/vs/17/release/vs_BuildTools.exe -OutFile $env:TEMP\vs_BuildTools.exe
+. "$env:TEMP\vs_BuildTools.exe" `
+    --passive `
+    --wait `
+    --includeRecommended `
+    --add Microsoft.VisualStudio.Workload.VCTools `
+    --remove Microsoft.VisualStudio.Component.VC.CMake.Project
 
 Update-SessionEnvironment
 
